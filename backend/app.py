@@ -140,7 +140,7 @@ def extract_text():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-from ddgs import DDGS
+from duckduckgo_search import DDGS
 import datetime
 
 @app.route('/api/chat', methods=['POST'])
