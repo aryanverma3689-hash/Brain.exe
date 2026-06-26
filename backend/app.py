@@ -217,7 +217,7 @@ def chat():
                 # Remove non-ascii characters to ensure safe handling
                 context = context.encode('ascii', 'ignore').decode('ascii')
                 
-                system_prompt += f"\n\n[CRITICAL INSTRUCTION: LIVE WEB SEARCH RESULTS]\nYou are provided with real-time context from the internet below. You MUST use this data to answer the user's question, as your internal knowledge is outdated. Ignore your training cutoff date.\n<context>\n{context}\n</context>\nCRITICAL: Answer the user based on the above context. If the context does not explicitly contain the exact answer, you MUST reply: 'I do not have enough information from the live internet search to answer this.' DO NOT guess, DO NOT hallucinate, and DO NOT use your internal knowledge to fill in the blanks. However, if the user provides an image, you MAY use your visual understanding of the image to supplement the context and identify subjects."
+                system_prompt += f"\n\n[LIVE WEB SEARCH RESULTS]\nYou are provided with real-time context from the internet below. Use this data to inform your answer if it is relevant to the user's prompt.\n<context>\n{context}\n</context>\nNote: If the user is just making conversation or the search results aren't directly applicable, just respond naturally using your normal persona and knowledge. Do not say you don't have enough information if you can simply chat with them."
             else:
                 system_prompt += "\n\n[CRITICAL INSTRUCTION]\nThe user requested a live web search, but the search engine returned no results or blocked the request. You must explicitly tell the user: 'My live web search failed to return results, so I cannot answer based on live data.'"
         except Exception as e:
