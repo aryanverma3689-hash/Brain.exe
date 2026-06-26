@@ -29,7 +29,7 @@ export default function ProfileModal({ isOpen, onClose }) {
             </div>
             
             <div className="sm:mt-auto sm:pt-4 sm:border-t border-white/10 ml-auto sm:ml-0 shrink-0">
-              <button onClick={() => { toast.success('Logged out successfully'); onClose(); }} className="h-full sm:w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors text-rose-400/80 hover:text-rose-400 hover:bg-rose-500/10 whitespace-nowrap">
+              <button onClick={() => { toast.success('Logged out successfully'); onClose(); window.location.href = '/'; }} className="h-full sm:w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors text-rose-400/80 hover:text-rose-400 hover:bg-rose-500/10 whitespace-nowrap">
                 <LogOut size={16} />
                 <span className="hidden sm:inline">Log Out</span>
               </button>
@@ -73,11 +73,19 @@ function TabButton({ icon: Icon, label, isActive, onClick }) {
 }
 
 function AccountSettings() {
+  const [name, setName] = useState(localStorage.getItem('userName') || 'Aryan');
+
+  const handleSave = () => {
+    localStorage.setItem('userName', name);
+    window.dispatchEvent(new Event('profileUpdate'));
+    toast.success('Profile updated!');
+  };
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center gap-6">
         <div className="w-20 h-20 rounded-full bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-2xl font-bold shadow-lg">
-          AR
+          {name.substring(0, 2).toUpperCase()}
         </div>
         <div>
           <button onClick={() => toast('Avatar upload coming soon')} className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-lg transition-colors border border-white/5">
@@ -90,7 +98,12 @@ function AccountSettings() {
       <div className="grid gap-4">
         <div className="grid gap-1.5">
           <label className="text-sm font-medium text-white/80">Display Name</label>
-          <input type="text" defaultValue="Aryan" className="bg-black/50 border border-white/10 rounded-lg px-4 py-2 text-white outline-none focus:border-emerald-500 transition-colors" />
+          <input 
+            type="text" 
+            value={name} 
+            onChange={(e) => setName(e.target.value)}
+            className="bg-black/50 border border-white/10 rounded-lg px-4 py-2 text-white outline-none focus:border-emerald-500 transition-colors" 
+          />
         </div>
         <div className="grid gap-1.5">
           <label className="text-sm font-medium text-white/80">Email Address</label>
@@ -98,7 +111,7 @@ function AccountSettings() {
         </div>
       </div>
 
-      <button onClick={() => toast.success('Profile updated!')} className="mt-4 w-full px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-black text-sm font-bold rounded-lg transition-colors">
+      <button onClick={handleSave} className="mt-4 w-full px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-black text-sm font-bold rounded-lg transition-colors">
         Save Changes
       </button>
     </div>

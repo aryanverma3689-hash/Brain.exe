@@ -82,9 +82,6 @@ export default function LandingPage() {
               Start Chatting
               <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </Link>
-            <button className="px-8 py-4 rounded-full text-lg font-medium text-white/80 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all backdrop-blur-md">
-              Explore Features
-            </button>
           </div>
         </motion.div>
       </main>

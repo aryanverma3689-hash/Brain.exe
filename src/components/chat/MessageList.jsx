@@ -57,6 +57,14 @@ export default function MessageList({ messages, currentMood, messagesEndRef, onS
     return <div className="whitespace-pre-wrap">{content}</div>;
   };
 
+  const [userName, setUserName] = useState(localStorage.getItem('userName') || 'Aryan');
+
+  useEffect(() => {
+    const handleNameChange = () => setUserName(localStorage.getItem('userName') || 'Aryan');
+    window.addEventListener('profileUpdate', handleNameChange);
+    return () => window.removeEventListener('profileUpdate', handleNameChange);
+  }, []);
+
   if (messages.length === 0) {
     return (
       <div className="flex-1 overflow-y-auto px-4 md:px-8 lg:px-24 pt-24 pb-36 flex flex-col gap-6 custom-scrollbar scroll-smooth">
@@ -73,7 +81,7 @@ export default function MessageList({ messages, currentMood, messagesEndRef, onS
             className="mb-10"
           />
           <h2 className="text-3xl font-bold tracking-tight mb-3 bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
-            Good Evening, Aryan.
+            Hi, {userName}.
           </h2>
           <p className="text-white/50 text-sm leading-relaxed mb-12">
             What would you like to build today?

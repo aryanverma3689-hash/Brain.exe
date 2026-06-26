@@ -28,6 +28,14 @@ export default function Sidebar({
   const [hoveredSessionId, setHoveredSessionId] = useState(null);
   const [activeTab, setActiveTab] = useState('Recent Chats');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [userName, setUserName] = useState(localStorage.getItem('userName') || 'Aryan');
+
+  useEffect(() => {
+    const handleNameChange = () => setUserName(localStorage.getItem('userName') || 'Aryan');
+    window.addEventListener('profileUpdate', handleNameChange);
+    return () => window.removeEventListener('profileUpdate', handleNameChange);
+  }, []);
+
   const [pinnedSessions, setPinnedSessions] = useState(() => {
     const saved = localStorage.getItem('brain_pinned_sessions');
     return saved ? JSON.parse(saved) : [];
@@ -289,10 +297,10 @@ export default function Sidebar({
         {/* User Profile Footer */}
         <div onClick={() => toast('Profile coming soon')} className="p-3 m-3 mt-0 rounded-xl bg-white/5 border border-white/5 flex items-center gap-3 hover:bg-white/10 cursor-pointer transition-all duration-300 group">
           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-xs font-bold shadow-lg group-hover:shadow-purple-500/20 transition-all">
-            AR
+            {userName.substring(0, 2).toUpperCase()}
           </div>
           <div className="flex flex-col flex-1 overflow-hidden">
-            <span className="text-sm font-medium text-white/90 truncate">Aryan</span>
+            <span className="text-sm font-medium text-white/90 truncate">{userName}</span>
             <span className="text-[10px] text-emerald-400 font-semibold tracking-wider">PRO PLAN</span>
           </div>
           <button onClick={(e) => { e.stopPropagation(); setIsSettingsOpen(true); }} className="text-white/30 hover:text-white transition-colors p-1">
