@@ -18,7 +18,7 @@ export default function LandingPage() {
           <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/20">
             <Bot size={18} className="text-white" />
           </div>
-          Nexus AI
+          Brain.exe
         </div>
         <div className="flex gap-6 items-center">
           <Link to="/chat" className="text-sm font-medium hover:text-white/80 transition-colors">Log In</Link>
@@ -66,7 +66,7 @@ export default function LandingPage() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-white/80 mb-6 backdrop-blur-md shadow-sm">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.8)]"></span>
-            Nexus OS 2.0 is live
+            Brain.exe is live
           </div>
           
           <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-6 bg-gradient-to-br from-white via-white/90 to-white/40 bg-clip-text text-transparent drop-shadow-sm">
