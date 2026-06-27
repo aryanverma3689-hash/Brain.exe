@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { motion } from 'framer-motion';
 import { Bot, FileText, Copy, RefreshCw, Layers, Sparkles, CheckCircle2 } from 'lucide-react';
