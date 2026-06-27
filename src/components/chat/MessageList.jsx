@@ -57,10 +57,10 @@ export default function MessageList({ messages, currentMood, messagesEndRef, onS
     return <div className="whitespace-pre-wrap">{content}</div>;
   };
 
-  const [userName, setUserName] = useState(localStorage.getItem('userName') || 'Aryan');
+  const [userName, setUserName] = useState(localStorage.getItem('userName') || 'User');
 
   useEffect(() => {
-    const handleNameChange = () => setUserName(localStorage.getItem('userName') || 'Aryan');
+    const handleNameChange = () => setUserName(localStorage.getItem('userName') || 'User');
     window.addEventListener('profileUpdate', handleNameChange);
     return () => window.removeEventListener('profileUpdate', handleNameChange);
   }, []);

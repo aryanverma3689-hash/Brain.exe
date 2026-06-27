@@ -73,7 +73,7 @@ function TabButton({ icon: Icon, label, isActive, onClick }) {
 }
 
 function AccountSettings() {
-  const [name, setName] = useState(localStorage.getItem('userName') || 'Aryan');
+  const [name, setName] = useState(localStorage.getItem('userName') || 'User');
 
   const handleSave = () => {
     localStorage.setItem('userName', name);

@@ -28,10 +28,10 @@ export default function Sidebar({
   const [hoveredSessionId, setHoveredSessionId] = useState(null);
   const [activeTab, setActiveTab] = useState('Recent Chats');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [userName, setUserName] = useState(localStorage.getItem('userName') || 'Aryan');
+  const [userName, setUserName] = useState(localStorage.getItem('userName') || 'User');
 
   useEffect(() => {
-    const handleNameChange = () => setUserName(localStorage.getItem('userName') || 'Aryan');
+    const handleNameChange = () => setUserName(localStorage.getItem('userName') || 'User');
     window.addEventListener('profileUpdate', handleNameChange);
     return () => window.removeEventListener('profileUpdate', handleNameChange);
   }, []);
